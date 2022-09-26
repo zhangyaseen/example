@@ -1,9 +1,18 @@
 
-int main(void) {
-    int a = 10;
-    int b = 20;
-    const int A = 10;
-    const int B = 10;
+void basic(void) {
+  int a = 10;
+  int b = 20;
 
-    return 0;
+  const int *p = &a;
+  p = &b;
+  // *p = 20 error
+
+  int *const q = &a;
+  *q = 100;
+  // q = &b; error
+}
+
+int main(void) {
+  basic();
+  return 0;
 }
