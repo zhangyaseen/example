@@ -7,13 +7,16 @@ typedef struct Person {
   int age;
 } Person;
 
-int main(void) {
+
+void deep_copy(void) {
   Person a;
   a.age = 100;
   a.name = (char *)malloc(sizeof(char) * 10);
   strncpy(a.name, "llllll", 6);
 
   Person b = a;
+  b.name = (char *)malloc(sizeof(char) * 10);
+  strncpy(b.name, a.name, 10);
 
   Person *p = (Person *)malloc(sizeof(Person));
   p->name = (char *)malloc(sizeof(char) * 10);
@@ -33,6 +36,38 @@ int main(void) {
     free(p);
     p = NULL;
   }
+
+}
+
+typedef struct Peo {
+  int a;
+  char b;
+  double c;
+  short d;
+} Peo;
+
+typedef struct Student {
+  char a;
+  Peo b;
+  double c;
+} Student;
+
+typedef struct Pee {
+  char a;
+  short b;
+  int c;
+  double d;
+} Pee;
+
+void memory_alignment(void) {
+  printf("sizeof Peo:%ld, sizeof Stu: %ld\n", sizeof(Peo), sizeof(Student));
+  printf("sizeof align Pee: %ld\n", sizeof(Pee));
+}
+
+int main(void) {
+    deep_copy();
+
+    memory_alignment();
 
   return 0;
 }

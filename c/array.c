@@ -24,10 +24,58 @@ void point_array(void) {
   p[2] = &c;
 }
 
+
+void two_dimensional_memroy(void) {
+  int arr[][3] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+  int len = sizeof(arr) / sizeof(int);
+
+  int *p = (int*)arr;
+  for (int i = 0; i < len; ++i) {
+    printf("%d\t", p[i]);
+  }
+  putchar('\n');
+}
+
+void print_array_1(int arr[3][3]) {
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+      printf("%d\t", arr[i][j]);
+    }
+  }
+  putchar('\n');
+}
+
+void print_array_2(int arr[][3]) {
+   for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+      printf("%d\t", arr[i][j]);
+    }
+  }
+  putchar('\n');
+}
+
+void print_array_3(int (*arr)[3]) {
+   for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 3; j++) {
+      printf("%d\t", arr[i][j]);
+    }
+  }
+  putchar('\n');
+}
+
+void two_dimensional_as_param(void) {
+  int arr[][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+  print_array_1(arr);
+  print_array_2(arr);
+  print_array_3(arr);
+}
+
 int main(void) {
   basic();
-
   point_array();
+
+  two_dimensional_memroy();
+  two_dimensional_as_param();
 
   return 0;
 }
