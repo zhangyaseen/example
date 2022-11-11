@@ -1,39 +1,34 @@
-	.file	"extern.c"
-	.text
-	.globl	main
-	.type	main, @function
-main:
-.LFB0:
+	.section	__TEXT,__text,regular,pure_instructions
+	.build_version macos, 13, 0	sdk_version 13, 0
+	.globl	_main                           ## -- Begin function main
+	.p2align	4, 0x90
+_main:                                  ## @main
 	.cfi_startproc
-	endbr64
+## %bb.0:
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
-	.cfi_offset 6, -16
+	.cfi_offset %rbp, -16
 	movq	%rsp, %rbp
-	.cfi_def_cfa_register 6
-	movl	$10, -4(%rbp)
-	movl	$0, %eax
+	.cfi_def_cfa_register %rbp
+	subq	$16, %rsp
+	movl	$0, -4(%rbp)
+	movl	$10, -8(%rbp)
+	movq	_c@GOTPCREL(%rip), %rax
+	movl	$30, (%rax)
+	leaq	L_.str(%rip), %rdi
+	leaq	-8(%rbp), %rsi
+	movq	_c@GOTPCREL(%rip), %rdx
+	movb	$0, %al
+	callq	_printf
+	xorl	%eax, %eax
+	addq	$16, %rsp
 	popq	%rbp
-	.cfi_def_cfa 7, 8
-	ret
+	retq
 	.cfi_endproc
-.LFE0:
-	.size	main, .-main
-	.ident	"GCC: (Ubuntu 11.2.0-19ubuntu1) 11.2.0"
-	.section	.note.GNU-stack,"",@progbits
-	.section	.note.gnu.property,"a"
-	.align 8
-	.long	1f - 0f
-	.long	4f - 1f
-	.long	5
-0:
-	.string	"GNU"
-1:
-	.align 8
-	.long	0xc0000002
-	.long	3f - 2f
-2:
-	.long	0x3
-3:
-	.align 8
-4:
+                                        ## -- End function
+	.comm	_c,4,2                          ## @c
+	.section	__TEXT,__cstring,cstring_literals
+L_.str:                                 ## @.str
+	.asciz	"extern base: %p, %p\n"
+
+.subsections_via_symbols
