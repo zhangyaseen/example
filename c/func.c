@@ -7,6 +7,11 @@ int max(int x, int y);
 
 int max(int x, int y) { return x > y ? x : y; }
 
+// compiler will not check param 
+void print_no_param() {
+  printf("no func param\n");
+} 
+
 void alloc_space(char **p) {
   *p = (char *)malloc(sizeof(char) * 100);
   strcpy(*p, "hello world");
@@ -102,8 +107,11 @@ void call_back(int(*my_cal)(int, int), int a, int b) {
   printf("ret = %d\n", ret);
 }
 
+
 int main(void) {
   max(10, 20);
+
+  print_no_param("hello world");
 
   alloc_param();
 

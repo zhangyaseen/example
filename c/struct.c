@@ -59,9 +59,25 @@ typedef struct Pee {
   double d;
 } Pee;
 
+typedef struct Bit {
+  unsigned int a : 1;
+  unsigned int b : 1;
+  unsigned int c : 1;
+  unsigned int d : 1;
+} Bit;
+
+
 void memory_alignment(void) {
   printf("sizeof Peo:%ld, sizeof Stu: %ld\n", sizeof(Peo), sizeof(Student));
   printf("sizeof align Pee: %ld\n", sizeof(Pee));
+  
+
+  Bit bit;
+  bit.a = 0;
+  bit.b = 1;
+  bit.c = 1;
+  bit.d = 1;
+  printf("sizeof Bit:%ld, a = %d, d = %d\n", sizeof(bit), bit.a, bit.d);
 }
 
 int main(void) {
