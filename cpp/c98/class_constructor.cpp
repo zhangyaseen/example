@@ -166,6 +166,38 @@ void constructor_init_list(void) {
     UserB(100, "Phone");
 }
 
+class ExplicitTest{
+    public:
+    ExplicitTest() {
+        std::cout << "ExplicitTest default" << std::endl;
+    }
+
+    ExplicitTest(int n) {
+        std::cout << "ExplicitTest int n" << std::endl;
+    }
+
+    ExplicitTest(float a, float b) {
+        std::cout << "ExplicitTest float" << std::endl;
+    }
+
+    explicit ExplicitTest(const char *str) {
+        std::cout << "ExplicitTest char str" << std::endl;
+    }
+};
+
+void class_explicit(void) {
+    std::cout << "class explicit" << std::endl;
+    
+    ExplicitTest e1(10);
+    ExplicitTest e2 = 10;
+
+    ExplicitTest e3("hello");
+    // ExplicitTest e4 = "world";
+
+    ExplicitTest e5 = (0.5, 0.6); // call int
+    ExplicitTest e6(0.1, 0.2);  // call float
+}
+
 int main(void) {
 
     default_constructor();
@@ -175,6 +207,8 @@ int main(void) {
     copy_constructor();
 
     constructor_init_list();
+
+    class_explicit();
 
     std::cout << "class constructor end" << std::endl;
 
